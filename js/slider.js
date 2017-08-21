@@ -11,8 +11,16 @@ jQuery.fn.slider = function(o) {
     o = jQuery.extend({
         /**
          * Show thumbnail
+         * 
+         * yes|no
          */
-        thumbnail_show : 1,
+        thumbnail_show : 'yes',
+        /**
+         * Show controls
+         * 
+         * yes|no
+         */
+        controls : 'yes',
         /**
          * circle|picture
          */
@@ -204,6 +212,13 @@ jQuery.fn.slider = function(o) {
         }
     };
     /**
+     * 
+     * @returns {null}
+     */
+    var hide_controls = function (that){
+        jQuery('.controls', that).hide();
+    };
+    /**
      * Next item
      * 
      * @param {int} selected_item
@@ -211,7 +226,7 @@ jQuery.fn.slider = function(o) {
      * @param {object} that
      * @returns {null}
      */
-    var next_item = function (selected_item, n_pictures, that){
+    var next_item = function (selected_item, that){
         /*Next item*/
         jQuery('.slide > [data-selected="yes"').hide(o.effect, o.duration);
         jQuery('.slide [data-selected="yes"]', that).attr('data-selected', 'no');
@@ -227,7 +242,7 @@ jQuery.fn.slider = function(o) {
      * @param {int} n_pictures
      * @returns {null}
      */
-    var prev_item = function (selected_item, n_pictures, that){
+    var prev_item = function (selected_item, that){
         /*Prev item*/
         jQuery('.slide > [data-selected="yes"').hide(o.effect, o.duration);
         jQuery('.slide [data-selected="yes"]', that).attr('data-selected', 'no');
@@ -236,6 +251,21 @@ jQuery.fn.slider = function(o) {
         /*-----------------------------------------------------------------------------------------*/
         show_controls(selected_item);
     };
+    /**
+     * 
+     * @param {int} selected_item
+     * @param {int} n_pictures
+     * @param {object} that
+     * @returns {null}
+     */
+    var autoplay = function(selected_item, n_pictures, that){
+        selected_item ++;
+        if(selected_item===n_pictures+1){
+            selected_item = 1;
+        }
+        
+        next_item(selected_item, that);
+    }; 
     
     /**
      * 
@@ -262,12 +292,12 @@ jQuery.fn.slider = function(o) {
          * @call attr
          */
         var selected_item = Number(jQuery(selected).attr('data-item'));
-        /**
-         * 
-         * @param {type} selected_item
-         * @param {type} n_pictures
-         * @returns {undefined}
-         */
+        
+        //Disable controls
+        if(o.controls === 'no'){
+            hide_controls(that);
+            //autoplay(selected_item, n_pictures, that);
+        }
         
         jQuery(that).css({
             'height' : o.height,
@@ -285,7 +315,8 @@ jQuery.fn.slider = function(o) {
         jQuery(prev+', '+next).hide();
         
         show_controls(selected_item);
-        add_thumbnail(o.thumbnail_type, that);
+        if(o.thumbnail_show === 'yes')
+            add_thumbnail(o.thumbnail_type, that);
         set_controls_position(that);
         set_thumbnail_position(that);
         
@@ -299,7 +330,7 @@ jQuery.fn.slider = function(o) {
             if(selected_item===n_pictures+1){
                 selected_item = 1;
             }
-            next_item(selected_item, n_pictures, that);
+            next_item(selected_item, that);
         });
         /**
          * PREV ITEM CLICK
@@ -309,7 +340,7 @@ jQuery.fn.slider = function(o) {
             if(selected_item===0){
                 selected_item = n_pictures;
             }
-            prev_item(selected_item, n_pictures, that);
+            prev_item(selected_item, that);
         });
         /**
          * THUMBNAIL CLICK
@@ -339,7 +370,7 @@ jQuery.fn.slider = function(o) {
                         if(selected_item===n_pictures+1){
                             selected_item = 1;
                         }
-                        next_item(selected_item, n_pictures, that);   
+                        next_item(selected_item, that);   
                     //}
                 }else if(event.keyCode === 37){
                     //j ++;
@@ -348,7 +379,7 @@ jQuery.fn.slider = function(o) {
                         if(selected_item===0){
                             selected_item = n_pictures;
                         }
-                        prev_item(selected_item, n_pictures, that);   
+                        prev_item(selected_item, that);
                     //}
                 }
             });
