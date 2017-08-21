@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <title>Slider</title>
+        
+        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+        <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+        <link rel="stylesheet" href="css/slider.css" />
+        
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui.js"></script>
+        <script type="text/javascript" src="js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="js/slider.js"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function(){
+                jQuery('#slider').slider({
+                    height : '700px',
+                    effect : 'fade',
+                    keyboard : 'yes',
+                    thumbnail_type : 'circle'
+                });
+            });
+        </script>
+    </head>
+    
+    <body>
+        <div id="slider" class="slider">
+            <div class="wrap">
+                <div class="pictures">
+                    <div class="controls">
+                        <div class="arrow arrow--left" data-action="prev"></div>
+                        <div class="arrow arrow--right" data-action="next"></div>
+                    </div>
+                    
+                    <div class="slide">
+                        <img src="https://i.ytimg.com/vi/QVNxV2l7Za8/maxresdefault.jpg" alt="" title="" data-description="Descrizione immagine 1"  data-selected="yes" data-item="1" />
+                        <img src="http://www.visitstilo.it/wp-content/uploads/2014/07/paesaggi-1.jpg" alt="" title="" data-description="Descrizione immagine 2" data-selected="no" data-item="2" />
+                        <img src="http://www.boorp.com/sfondi_gratis_desktop_pc/sfondi_gratis/sfondi_paesaggi_mare_montagna/paesaggi_tulipani_rossi_tramonto.jpg" alt="" title="" data-description="Descrizione immagine 3" data-selected="no" data-item="3" />
+                        <img src="http://www.pixolo.it/wp-content/uploads/2012/11/boat-on-the-lake-1920x1200-wallpaper-5127.jpg" alt="" title="" data-description="Descrizione immagine 4" data-selected="no" data-item="4" />
+                        <img src="https://nisifilters.it/wp-content/uploads/2016/12/Messa-a-Fuoco-Paesaggio.jpg" alt="" title="" data-description="Descrizione immagine 5" data-selected="no" data-item="5" />
+                        <img src="http://www.toscanadove.it/wp-content/uploads/2014/12/foto-paesaggi-47.jpg" alt="" title="" data-description="Descrizione immagine 6" data-selected="no" data-item="6" />
+                        
+                        
+                        <div class="thumbnail"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
