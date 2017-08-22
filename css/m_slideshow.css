@@ -1,28 +1,23 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
 /* 
     Created on : 19-ago-2017, 0.42.11
     Author     : Mattia Leonardo Angelillo
     Email      : mattia.angelillo@gmail.com
-    Version    : 1.0.0
+    Version    : 1.0.1
 */
-#slider{
-    border: 1px solid;
+.m_slideshow {
+    border: 0px solid;
 }
-#slider, #slider .pictures .slide, #slider .pictures .slide img{
+.m_slideshow , .m_slideshow  .pictures .slide, .m_slideshow  .pictures .slide img{
 }
-#slider .pictures .slide{
+.m_slideshow  .pictures .slide{
     position: relative;
     width: 100%;
     height: 100%;
 }
-#slider .pictures .slide > img{
+.m_slideshow  .pictures .slide > img{
     position: absolute;
 }
-#slider .controls .arrow{
+.m_slideshow  .controls .arrow{
     width: 40px;
     height: 40px;
     border: 1px solid;
@@ -36,20 +31,22 @@ and open the template in the editor.
     background-size: 30px;
     background-position: center;
 }
-#slider .controls .arrow--left{
+.m_slideshow  .controls .arrow--left{
     left: 10px;
-    background-image: url(../images/slider/left-control.png)
+    background-image: url(../images/m_slideshow/left-control.png)
 }
-#slider .controls .arrow--right{
+.m_slideshow  .controls .arrow--right{
     right: 10px;
-    background-image: url(../images/slider/right-control.png)
+    background-image: url(../images/m_slideshow/right-control.png)
 }
-#slider .thumbnail{
+.m_slideshow  .thumbnail{
     position: absolute;
     bottom: 0;
+    border: 0 !important;
+    background-color: transparent !important;
 }
-#slider .thumbnail.circle{height: 30px;}
-#slider .thumbnail.circle .thumbnail-circle{
+.m_slideshow  .thumbnail.circle{height: 30px;}
+.m_slideshow  .thumbnail.circle .thumbnail-circle{
     border: 1px solid;
     width: 20px;
     height: 20px;
@@ -61,8 +58,8 @@ and open the template in the editor.
     margin: 0 auto;
     margin-right: 5px;
 }
-#slider .thumbnail.picture{height: 50px;bottom: 10px;}
-#slider .thumbnail.picture img{
+.m_slideshow  .thumbnail.picture{height: 50px;bottom: 10px;}
+.m_slideshow  .thumbnail.picture img{
     float: left;
     background: red;
     z-index: 99999;

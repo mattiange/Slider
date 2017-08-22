@@ -2,7 +2,7 @@
  *  Slideshow with controls, thumbnail and autoplay
  * 
  * @author Mattia Leonardo Angelillo
- * @version 1.0.0
+ * @version 1.0.1
  * @site computerizzandogioia.altervista.org
  * @copyright computerizzandogioia.altervista.org
  * @param {Object} o
