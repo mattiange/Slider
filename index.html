@@ -5,21 +5,25 @@
         <link rel="stylesheet" href="css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
         <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
-        <link rel="stylesheet" href="css/slider.css" />
+        <link rel="stylesheet" href="css/m_slideshow.css" />
         
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
         <script type="text/javascript" src="js/jquery-ui.js"></script>
         <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/slider.js"></script>
+        <script type="text/javascript" src="js/m_slideshow.js"></script>
         <script type="text/javascript">
             jQuery(document).ready(function(){
-                jQuery('#slider').slider({
+                jQuery('#slider').m_slideshow({
                     height : '700px',
                     effect : 'fade',
                     keyboard : 'no',
                     thumbnail_show : 'no',
                     thumbnail_type : 'circle',
-                    controls : 'no'
+                    controls : 'no',
+                    autoplay : {
+                        active : 'yes',
+                        time_interval : 5000
+                    }
                 });
             });
         </script>

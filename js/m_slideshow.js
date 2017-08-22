@@ -1,4 +1,5 @@
 /**
+ *  Slideshow with controls, thumbnail and autoplay
  * 
  * @author Mattia Leonardo Angelillo
  * @version 1.0.0
@@ -7,7 +8,7 @@
  * @param {Object} o
  * @returns {jQuery.fn@call;each}
  */
-jQuery.fn.slider = function(o) {
+jQuery.fn.m_slideshow = function(o) {
     o = jQuery.extend({
         /**
          * Show thumbnail
@@ -47,10 +48,19 @@ jQuery.fn.slider = function(o) {
         width : '100%',
         /**
          * Start autoplay
-         * 
-         * yes|no
          */
-        autoplay : 'no',
+        autoplay : {
+            /**
+             * Active autoplay
+             * 
+             * yes|no
+             */
+            active : 'no',
+            /**
+             * setInterval (ms)
+             */
+            time_interval : 3000
+        },
         /**
          * Use keyboard
          * 
@@ -252,6 +262,7 @@ jQuery.fn.slider = function(o) {
         show_controls(selected_item);
     };
     /**
+     * Slide autoplay (infinite loop)
      * 
      * @param {int} selected_item
      * @param {int} n_pictures
@@ -264,7 +275,18 @@ jQuery.fn.slider = function(o) {
             selected_item = 1;
         }
         
-        next_item(selected_item, that);
+        setInterval(function (){
+            var cur_pic = jQuery('.slide > [data-selected="yes"]');
+            var next_pic = cur_pic.next('[data-item]');
+            
+            if(next_pic.length === 0){
+                next_pic = jQuery('.slide > [data-item=1]');
+            }
+            cur_pic.attr('data-selected', 'no').hide(o.effect, o.duration);
+            next_pic.hide().attr('data-selected', 'yes').show(o.effect,  o.duration, function (){
+                cur_pic.attr('data-selected', 'no');
+            });
+        }, o.autoplay.time_interval);
     }; 
     
     /**
@@ -296,7 +318,8 @@ jQuery.fn.slider = function(o) {
         //Disable controls
         if(o.controls === 'no'){
             hide_controls(that);
-            //autoplay(selected_item, n_pictures, that);
+            if(o.autoplay.active === 'yes')
+                autoplay(selected_item, n_pictures, that);
         }
         
         jQuery(that).css({
