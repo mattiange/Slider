@@ -11,21 +11,29 @@
 jQuery.fn.m_slideshow = function(o) {
     o = jQuery.extend({
         /**
+         * Slider height
+         */
+        height: '500px',
+        /**
+         * Slider width
+         */
+        width : '100%',
+        /**
          * Show thumbnail
          * 
          * yes|no
          */
         thumbnail_show : 'yes',
         /**
+         * circle|picture
+         */
+        thumbnail_type : 'circle',
+        /**
          * Show controls
          * 
          * yes|no
          */
         controls : 'yes',
-        /**
-         * circle|picture
-         */
-        thumbnail_type : 'circle',
         /**
          * Show/Hide event
          * 
@@ -38,14 +46,6 @@ jQuery.fn.m_slideshow = function(o) {
          * Effect duration
          */
         duration : 1000,
-        /**
-         * Slider height
-         */
-        height: '500px',
-        /**
-         * Slider width
-         */
-        width : '100%',
         /**
          * Start autoplay
          */
@@ -276,14 +276,14 @@ jQuery.fn.m_slideshow = function(o) {
         }
         
         setInterval(function (){
-            var cur_pic = jQuery('.slide > [data-selected="yes"]');
+            var cur_pic = jQuery('.slide > [data-selected="yes"]', that);
             var next_pic = cur_pic.next('[data-item]');
-            
             if(next_pic.length === 0){
-                next_pic = jQuery('.slide > [data-item=1]');
+                next_pic = jQuery('.slide > [data-item=1]', that);
             }
+            
             cur_pic.attr('data-selected', 'no').hide(o.effect, o.duration);
-            next_pic.hide().attr('data-selected', 'yes').show(o.effect,  o.duration, function (){
+            next_pic.attr('data-selected', 'yes').show(o.effect, o.duration, function (){
                 cur_pic.attr('data-selected', 'no');
             });
         }, o.autoplay.time_interval);
